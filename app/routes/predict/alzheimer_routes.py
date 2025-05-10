@@ -54,19 +54,38 @@ def clean_input(data: PatientSchema):
         "difficulty_completing_tasks": "DifficultyCompletingTasks",
         "forgetfulness": "Forgetfulness"
     }
+    
+    mappings = {
+        "gender": {"Masculino": 0, "Femenino": 1, "Otro": 2},
+        "ethnicity": {"Mestizo": 0, "Quechua": 1, "Aymara": 2, "Otro": 3},
+        "education_level": {"Primaria": 0, "Secundaria": 1, "Superior": 2},
+        "physical_activity": {"Nunca": 0, "Ocasionalmente": 1, "Frecuentemente": 2},
+        "diet_quality": {"Pobre": 0, "Regular": 1, "Buena": 2},
+        "sleep_quality": {"Mala": 0, "Regular": 1, "Buena": 2},
+        "functional_assessment": {"Independiente": 0, "Dependiente": 1},
+        "adl": {"Sin dificultad": 0, "Con dificultad": 1}
+    }
 
-    # Renombrar claves
     formatted = {}
     for old_key, new_key in renamed.items():
-        val = data_dict.get(old_key)
-        # Convertir booleanos a enteros
-        if isinstance(val, bool):
-            val = int(val)
-        elif val is None:
-            val = 0
-        formatted[new_key] = val
+            val = data_dict.get(old_key)
+
+            if isinstance(val, bool):
+                val = int(val)
+            elif val is None:
+                val = 0
+            elif old_key in mappings:
+                val = mappings[old_key].get(val, 0)  # valor desconocido -> 0
+            elif isinstance(val, str):
+                try:
+                    val = float(val)
+                except:
+                    val = 0  # fallback si falla
+
+            formatted[new_key] = val
 
     return pd.DataFrame([formatted])
+
 
 
 @router.post("/predict-alzheimer")
