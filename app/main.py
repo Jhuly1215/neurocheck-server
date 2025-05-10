@@ -5,7 +5,8 @@ from app.routes import (
     answer_routes,
     predict_alzheimer_routes,
     result_routes,
-    question_routes
+    question_routes,
+    predict_dementia_routes
 )
 
 app = FastAPI(title="NeuroCheck API")
@@ -25,3 +26,4 @@ app.include_router(answer_routes.router, prefix="/api")
 app.include_router(result_routes.router, prefix="/api")
 app.include_router(question_routes.router, prefix="/api")
 app.include_router(predict_alzheimer_routes.router, prefix="/api")
+app.include_router(predict_dementia_routes.router, prefix="/api")
