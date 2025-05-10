@@ -1,0 +1,41 @@
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+env/
+*.env
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Claves y credenciales
+serviceAccountKey.json
+
+# Archivos de log y caché
+*.log
+*.db
+
+# Archivos de dependencias
+pip-log.txt
+
+# IDEs y herramientas
+.vscode/
+.idea/
+*.code-workspace
+
+# Archivos generados por pytest, coverage, etc.
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+.pytest_cache/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Otros
+*.bak
