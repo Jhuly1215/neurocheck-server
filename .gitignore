@@ -28,7 +28,7 @@ pip-log.txt
 
 # Archivos generados por pytest, coverage, etc.
 htmlcov/
-.tox/
+.tox/s
 .nox/
 .coverage
 .cache

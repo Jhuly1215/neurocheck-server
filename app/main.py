@@ -1,8 +1,15 @@
 from fastapi import FastAPI
-from app.routes import patient_routes, answer_routes, result_routes, question_routes
 from fastapi.middleware.cors import CORSMiddleware
+from app.routes import (
+    patient_routes,
+    answer_routes,
+    predict_alzheimer_routes,
+    result_routes,
+    question_routes
+)
 
 app = FastAPI(title="NeuroCheck API")
+
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
@@ -12,7 +19,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Rutas API
 app.include_router(patient_routes.router, prefix="/api")
 app.include_router(answer_routes.router, prefix="/api")
 app.include_router(result_routes.router, prefix="/api")
 app.include_router(question_routes.router, prefix="/api")
+app.include_router(predict_alzheimer_routes.router, prefix="/api")
