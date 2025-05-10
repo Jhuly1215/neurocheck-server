@@ -7,6 +7,7 @@ from app.routes import (
     result_routes,
     question_routes
 )
+from app.routes.predict_eeg_routes import router as predict_eeg_router
 
 app = FastAPI(title="NeuroCheck API")
 
@@ -25,3 +26,4 @@ app.include_router(answer_routes.router, prefix="/api")
 app.include_router(result_routes.router, prefix="/api")
 app.include_router(question_routes.router, prefix="/api")
 app.include_router(predict_alzheimer_routes.router, prefix="/api")
+app.include_router(predict_eeg_router, prefix="/api")
